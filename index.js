@@ -51,9 +51,9 @@ restService.post("/audio", function(req, res) {
       speech =
         '<speak>Alright, Thank You, See you next time, Download Al-Qolam App if you want to listen to full Surah. ( logo appear )</speak>';
       break;
-    case "delay":
+    case "Quran":
       speech =
-        '<speak>Let me take a break for 3 seconds. <break time="3s"/> I am back again.</speak>';
+        '<speak>Ok, Please select which Surah  you want to read & listen, You can read & listen from this selected Surah <p>[Surah Al-Fatiha]</p><p>[Surah Ya Sin]</p><p>[Surah Al Waqia]</p><p>[Surah Al-Mulk]</p><p>[Surah Ar-Rahman]</p><p>[Al-Ma’ida]</p></speak>';
       break;
     //https://www.w3.org/TR/speech-synthesis/#S3.2.3
     case "cardinal":
