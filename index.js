@@ -47,9 +47,9 @@ restService.post("/audio", function(req, res) {
       speech =
         '<speak>Thank You, please listen to Surah Ya Sin with voice from Qori Mishary Rashid  <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">did not get your audio file</audio> Would you listen to your other favorite Surah.? <p> [Surah Alfatihah] </p><p>[Surah Yasin]</p><p>[Surah Al Waqiah] </p><p>[Surah Al-Mulk] </p><p>[Surah Ar-Rahman] </p><p>[Al-Maidah] [No].</p></speak>';
       break;
-    case "music five":
+    case "n":
       speech =
-        '<audio src="https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg">did not get your audio file</audio>';
+        '<speak>Alright, Thank You, See you next time, Download Al-Qolam App if you want to listen to full Surah. ( logo appear )</speak>';
       break;
     case "delay":
       speech =
