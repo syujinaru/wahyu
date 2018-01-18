@@ -39,13 +39,13 @@ restService.post("/audio", function(req, res) {
       speech =
         '<speak>You can read and listen these favorite Surah. <p> [Surah Al-Fatiha] </p><p> [Surah Ya Sin] </speak>';
       break;
-    case "music three":
+    case "no":
       speech =
-        '<speak><audio repeatCount="2" soundLevel="-15db" src="https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg">did not get your audio file</audio></speak>';
+        '<speak>Would you like to listen Surah Ya Sin?</speak>';
       break;
-    case "music four":
+    case "Yes":
       speech =
-        '<speak><audio speed="200%" src="https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg">did not get your audio file</audio></speak>';
+        '<speak>Thank You, please listen to Surah Ya Sin with voice from Qori Mishary Rashid  <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg"></speak>';
       break;
     case "music five":
       speech =
