@@ -35,7 +35,7 @@ restService.post("/audio", function(req, res) {
       speech =
           '<speak> Assalamualaikum! Welcome to Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">did not get your audio file</audio> Allows users to learn, read and listen the Quran in a fast, simple, accurate and very accessible way by using google assistant, Would you like to Read and Listen Quran.? </speak>';
      break;
-    case "Yes":
+    case "yes":
       speech =
         '<speak>You can read and listen these favorite Surah. <p> [Surah Al-Fatiha] </p><p> [Surah Ya Sin] </speak>';
       break;
