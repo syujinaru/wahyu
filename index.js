@@ -33,8 +33,7 @@ restService.post("/audio", function(req, res) {
     //Speech Synthesis Markup Language 
     case "qolam":
       speech =
-          '<speak> <say-as interpret-as="ordinal">Assalamualaikum! Welcome to Al-Qolam! </say-as> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">did not get your audio file</audio> <say-as interpret-as="ordinal">Allows users to learn, read and listen the Quran in a fast, simple, accurate and very accessible way by using google assistant </say-as><say-as interpret-as="ordinal">Would you like to Read and Listen Quran.? </say-as><p><s>[Quran] </s><s> [Quran With Translate] .</s></p>
-</speak>';
+          '<speak> <say-as interpret-as="characters"> Assalamualaikum! Welcome to Al-Qolam! </say-as> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">did not get your audio file</audio></speak>';
      break;
     case "music two":
       speech =
