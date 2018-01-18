@@ -113,6 +113,13 @@ restService.post("/audio", function(req, res) {
         '<speak>IPL stands for <sub alias="indian premier league">IPL</sub></speak>';
       break;
   }
+  switch (req.body.result.parameters.Alqolam.toLowerCase()) {
+    //Speech Synthesis Markup Language 
+    case "yes":
+      speech =
+        '<speak>Thank You, please listen to Surah Ya Sin with voice from Qori Mishary Rashid  <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg"></speak>';
+      break;
+  }
   return res.json({
     speech: speech,
     displayText: speech,
