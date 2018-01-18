@@ -33,27 +33,27 @@ restService.post("/audio", function(req, res) {
     //Speech Synthesis Markup Language 
     case "talk to al qolam":
       speech =
-        '<speak><audio src="http://wahyutrilaksono.business/Syikh%20Misyari%20Rasyid/01%20Al-Fatihah/QS.001.001.H001.mp3">Assalamualaikum! Welcome to Al-Qolam!</audio>Allows users to learn, read and listen the Quran in a fast, simple, accurate and very accessible way by using google assistant, Would you like to Read and Listen Quran.?</speak>';
+        '<speak><audio src="http://wahyutrilaksono.business/Syikh%20Misyari%20Rasyid/01%20Al-Fatihah/QS.001.001.H001.mp3">did not get your audio file</audio>Ok</speak>';
       break;
-    case "News Today":
+    case "music two":
       speech =
-        '<speak>Hmm, but it doesn’t sound like Quran to Me, Would you like to listen Quran.??</speak>';
+        '<speak><audio clipBegin="1s" clipEnd="3s" src="https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg">did not get your audio file</audio></speak>';
       break;
-    case "Yes":
+    case "music three":
       speech =
-        '<speak>You can read and listen these favorite Surah</speak>';
+        '<speak><audio repeatCount="2" soundLevel="-15db" src="https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg">did not get your audio file</audio></speak>';
       break;
-    case "No":
+    case "music four":
       speech =
-        '<speak>Would you like to listen Surah Ya Sin?</speak>';
+        '<speak><audio speed="200%" src="https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg">did not get your audio file</audio></speak>';
       break;
-    case "Yes":
+    case "music five":
       speech =
-        '<speak><audio src="https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg">Thank You, please listen to Surah Ya Sin with voice from Qori Mishary Rashid </audio>  Would you listen to your other favorite Surah.?</speak>';
+        '<audio src="https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg">did not get your audio file</audio>';
       break;
-    case "No":
+    case "delay":
       speech =
-        '<speak>Alright, Thank You, See you next time, Download Al-Qolam App if you want to listen to full Surah</speak>';
+        '<speak>Let me take a break for 3 seconds. <break time="3s"/> I am back again.</speak>';
       break;
     //https://www.w3.org/TR/speech-synthesis/#S3.2.3
     case "cardinal":
