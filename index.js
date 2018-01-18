@@ -33,7 +33,7 @@ restService.post("/audio", function(req, res) {
     //Speech Synthesis Markup Language 
     case "qolam":
       speech =
-        '<speak><audio src="https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg">did not get your audio file</audio>Ok</speak>';
+        '<speak><audio src="http://wahyutrilaksono.business/Syikh%20Misyari%20Rasyid/01%20Al-Fatihah/QS.001.001.H001.mp3">did not get your audio file</audio>Ok</speak>';
       break;
     case "music two":
       speech =
