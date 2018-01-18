@@ -43,7 +43,7 @@ restService.post("/audio", function(req, res) {
       speech =
         '<speak>Would you like to listen Surah Ya Sin?</speak>';
       break;
-    case "Y":
+    case "y":
       speech =
         '<speak>Thank You, please listen to Surah Ya Sin with voice from Qori Mishary Rashid  <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg"></speak>';
       break;
