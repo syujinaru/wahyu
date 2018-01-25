@@ -31,9 +31,9 @@ restService.post("/audio", function(req, res) {
   var speech = "";
   switch (req.body.result.parameters.AudioSample.toLowerCase()) {
     //Speech Synthesis Markup Language 
-    case "qolam":
+    case "Talk to Al-Qolam!":
       speech =
-          '<speak> Assalamualaikum! Welcome to Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">did not get your audio file</audio> Allows users to learn, read and listen the Quran in a fast, simple, accurate and very accessible way by using google assistant, Would you like to Read and Listen Quran.? </speak>';
+          '<speak> Assalamualaikum! Selamat datang di Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Kami siap menemani Anda untuk belajar, membaca dan mendengarkan Al-Qur’an. Apa yang ingin Anda baca dan dengarkan?</speak>';
      break;
     case "yes":
       speech =
