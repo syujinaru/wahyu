@@ -39,24 +39,27 @@ restService.post("/audio", function(req, res) {
       speech =
         '<speak>Apa yang ingin Anda baca dan dengarkan?. <p> [Surah Al-Fatiha] </p><p> [Surah Ya Sin] </speak>';
       break;
-    case "no":
+    case "Murottal Al-Quran":
       speech =
-        '<speak>Would you like to listen Surah Ya Sin?</speak>';
+        '<speak>Baik. Surah apa yang ingin Anda baca dan dengarkan?, [Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah].</speak>';
       break;
-    case "y":
+    case "Surah Yasin":
       speech =
-        '<speak>Thank You, please listen to Surah Ya Sin with voice from Qori Mishary Rashid  <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">did not get your audio file</audio> Would you listen to your other favorite Surah.? <p> [Surah Alfatihah] </p><p>[Surah Yasin]</p><p>[Surah Al Waqiah] </p><p>[Surah Al-Mulk] </p><p>[Surah Ar-Rahman] </p><p>[Al-Maidah] [No].</p></speak>';
+          '<speak> Terima kasih. Selamat mendengarkan surah Yasin dari Qori Mishary Ibnu Rashid Al Afasy. <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda ingin mendengarkan Al-Qur’an dengan qori lain?
+[Mishari Ibnu Rashid Al Afasy] [Abdurrahman As Sudays] [Sa’ad Al Ghomidi] [ As Suraim] [Tidak mau].</speak>';
+     break;
+    case "Abdurrahman As Sudays":
+      speech =
+       '<speak> Baik. Selamat mendengarkan qori pilihan Anda. Untuk pilihan lebih lengkap silakan download Aplikasi Al-Qolam! (Keluar logo aplikasi) <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda mau mendengarkan surah favorit Anda yang lain?
+[Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah] [Tidak mau].
+</speak>';
       break;
-    case "n":
+    case "Tidak mau":
       speech =
-        '<speak>Alright, Thank You, See you next time, Download Al-Qolam App if you want to listen to full Surah. ( logo appear )</speak>';
-      break;
-    case "Quran":
-      speech =
-        '<speak>Ok, Please select which Surah  you want to read & listen, You can read & listen from this selected Surah <p>[Surah Al-Fatiha]</p><p>[Surah Ya Sin]</p><p>[Surah Al Waqia]</p><p>[Surah Al-Mulk]</p><p>[Surah Ar-Rahman]</p><p>[Al-Ma’ida]</p></speak>';
+        '<speak>Baiklah. Terima kasih. Sampai ketemu lagi</speak>';
       break;
     //https://www.w3.org/TR/speech-synthesis/#S3.2.3
-    case "cardinal":
+    case "Ya":
       speech = '<speak><say-as interpret-as="cardinal">12345</say-as></speak>';
       break;
     case "ordinal":
