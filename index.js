@@ -49,8 +49,7 @@ restService.post("/audio", function(req, res) {
      break;
     case "Abdurrahman As Sudays":
       speech =
-       '<speak> Baik, Selamat mendengarkan qori pilihan Anda, Untuk pilihan lebih lengkap silakan download Aplikasi Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda mau mendengarkan surah favorit Anda yang lain?[Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah] [Tidak mau].
-</speak>';
+       '<speak>Selamat mendengarkan qori pilihan Anda, Untuk pilihan lebih lengkap silakan download Aplikasi Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda mau mendengarkan surah favorit Anda yang lain?[Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah] [Tidak mau]</speak>';
       break;
     case "Tidak mau":
       speech =
