@@ -40,7 +40,7 @@ restService.post("/audio", function(req, res, app) {
       speech =
         '<speak>Baik. Surah apa yang ingin Anda baca dan dengarkan?, [Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah].</speak>';
       break;
-    case "Surah Yasin":
+    case "Yasin":
       speech =
           '<speak> Terima kasih. Selamat mendengarkan surah Yasin dari Qori Mishary Ibnu Rashid Al Afasy. <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda ingin mendengarkan Al-Qur’an dengan qori lain? [Mishari Ibnu Rashid Al Afasy] [Abdurrahman As Sudays] [Sa’ad Al Ghomidi] [ As Suraim] [Tidak mau] </speak>';
      break;
