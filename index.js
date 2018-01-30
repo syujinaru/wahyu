@@ -43,9 +43,6 @@ restService.post("/echo", function list () {
       )
   );
 });
-app.handleRequest(actionMap);
-    
-});
 
 restService.post("/audio", function(req, res, app) {
   var speech = "";
