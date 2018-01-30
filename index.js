@@ -27,15 +27,39 @@ restService.post("/echo", function(req, res) {
   });
 });
 
-restService.post("/audio", function(req, res) {
+restService.post("/audio", function(req, res, app) {
   var speech = "";
   switch (req.body.result.parameters.AudioSample.toLowerCase()) {
     //Speech Synthesis Markup Language 
     case "qolam":
-      speech =
-          '<speak> Assalamualaikum! Selamat datang di Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Kami siap menemani Anda untuk belajar, membaca dan mendengarkan Al-Qur’an. Apa yang ingin Anda baca dan dengarkan? [Murottal Al-Quran] [Murottal dan Terjemahan] [Do’a-do’a] [Ayat-Ayat Tematik] [Tafsir Al-Quran]</speak>'
-          const textToSpeech = '<speak>[Murottal Al-Quran] </speak>';
-          restService.ask(textToSpeech);
+     app.askWithCarousel('Alright! Here are a few things you can learn. Which sounds interesting?',
+    // Build a carousel
+    app.buildCarousel()
+    // Add the first item to the carousel
+    .addItems(app.buildOptionItem('MATH_AND_PRIME',
+      ['math', 'math and prime', 'prime numbers', 'prime'])
+      .setTitle('Math & prime numbers')
+      .setDescription('42 is an abundant number because the sum of its ' +
+        'proper divisors 54 is greater…')
+      .setImage('http://example.com/math_and_prime.jpg', 'Math & prime numbers'))
+    // Add the second item to the carousel
+    .addItems(app.buildOptionItem('EGYPT',
+      ['religion', 'egpyt', 'ancient egyptian'])
+      .setTitle('Ancient Egyptian religion')
+      .setDescription('42 gods who ruled on the fate of the dead in the ' +
+        'afterworld. Throughout the under…')
+      .setImage('http://example.com/egypt', 'Egypt')
+    )
+    // Add third item to the carousel
+    .addItems(app.buildOptionItem('RECIPES',
+      ['recipes', 'recipe', '42 recipes'])
+      .setTitle('42 recipes with 42 ingredients')
+      .setDescription('Here\'s a beautifully simple recipe that\'s full ' +
+        'of flavor! All you need is some ginger and…')
+      .setImage('http://example.com/recipe', 'Recipe')
+    )
+  );
+}
       break;
     case "Murottal Al-Quran":
       speech =
