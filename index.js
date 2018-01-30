@@ -31,45 +31,45 @@ restService.post("/audio", function(req, res) {
   var speech = "";
   switch (req.body.result.parameters.AudioSample.toLowerCase()) {
     //Speech Synthesis Markup Language 
-    case "qolam":
+    case "Talk to Al-Qolam!":
       speech =
-          '<speak> Assalamualaikum! Selamat datang di Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Kami siap menemani Anda untuk belajar, membaca dan mendengarkan Al-Qur’an.</speak>';
+          '<speak> Assalamualaikum! Selamat datang di Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Kami siap menemani Anda untuk belajar, membaca dan mendengarkan Al-Qur’an. Apa yang ingin Anda baca dan dengarkan? [Murottal Al-Quran] [Murottal dan Terjemahan] [Do’a-do’a] [Ayat-Ayat Tematik] [Tafsir Al-Quran]</speak>';
      break;
-    case "qolam2":
-      speech =
-        '<speak>Apa yang ingin Anda baca dan dengarkan?. <p> [Surah Al-Fatiha] </p><p> [Surah Ya Sin] </speak>';
-      break;
     case "Murottal Al-Quran":
       speech =
         '<speak>Baik. Surah apa yang ingin Anda baca dan dengarkan?, [Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah].</speak>';
       break;
-    case "Yasin":
+    case "Surah Yasin":
       speech =
-          '<speak> Terima kasih. Selamat mendengarkan surah Yasin dari Qori Mishary Ibnu Rashid Al Afasy. <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda ingin mendengarkan Al-Qur’an dengan qori lain? </speak>';
+          '<speak> Terima kasih. Selamat mendengarkan surah Yasin dari Qori Mishary Ibnu Rashid Al Afasy. <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda ingin mendengarkan Al-Qur’an dengan qori lain? [Mishari Ibnu Rashid Al Afasy] [Abdurrahman As Sudays] [Sa’ad Al Ghomidi] [ As Suraim] [Tidak mau] </speak>';
      break;
     case "Abdurrahman As Sudays":
       speech =
-       '<speak>Selamat mendengarkan qori pilihan Anda, Untuk pilihan lebih lengkap silakan download Aplikasi Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda mau mendengarkan surah favorit Anda yang lain?[Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah] [Tidak mau]</speak>';
+       '<speak>Selamat mendengarkan qori pilihan Anda, Untuk pilihan lebih lengkap silakan download Aplikasi Al-Qolam!<a href='https://play.google.com/store/apps/details?id=com.exceptionaire.alqolam'> <img src="http://alqolam.com/wp-content/uploads/2015/04/alqolamlogo.png">not connected image</img></a><break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda mau mendengarkan surah favorit Anda yang lain?[Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah] [Tidak mau]</speak>';
       break;
     case "Tidak mau":
       speech =
         '<speak>Baiklah. Terima kasih. Sampai ketemu lagi</speak>';
+       let actionMap = new Map();
+       actionMap.set(app.StandardIntents.CANCEL, sayBye);
+       app.handleRequest(actionMap);
+	  break;
+    //Bad Input
+    case "Lagu Raisha":
+      speech = 
+	     '<speak>Sepertinya bukan itu yang kami maksud. Apakah Anda mau mendengarkan Murottal Al-Qur’an? [Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah] [Tidak mau]</speak>';
       break;
-    //https://www.w3.org/TR/speech-synthesis/#S3.2.3
+    case "Tidak mau2":
+      speech =
+        '<speak>Apakah Anda suka surah Yasin?</speak>';
+      break;
     case "Ya":
-      speech = '<speak><say-as interpret-as="cardinal">12345</say-as></speak>';
-      break;
-    case "ordinal":
       speech =
-        '<speak>I stood <say-as interpret-as="ordinal">10</say-as> in the class exams.</speak>';
+         '<speak> Baik. Selamat mendengarkan surah Yasin dari Qori Mishary Ibnu Rashid Al Afasy!<break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda mau mendengarkan surah favorit Anda yang lain? [Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah] [Tidak mau] </speak>';
       break;
-    case "characters":
+    case "Tidak Mau3":
       speech =
-        '<speak>Hello is spelled as <say-as interpret-as="characters">Hello</say-as></speak>';
-      break;
-    case "fraction":
-      speech =
-        '<speak>Rather than saying 24+3/4, I should say <say-as interpret-as="fraction">24+3/4</say-as></speak>';
+        '<speak>Baiklah. Terima kasih. Sampai ketemu lagi. Untuk lebih lengkap silakan download Aplikasi Al-Qolam! <a href='https://play.google.com/store/apps/details?id=com.exceptionaire.alqolam'> <img src="http://alqolam.com/wp-content/uploads/2015/04/alqolamlogo.png">not connected image</img></a></speak>';
       break;
     case "bleep":
       speech =
