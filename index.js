@@ -60,6 +60,7 @@ restService.post("/audio", function(req, res) {
     '<p><s>This is sentence one.</s><s>This is sentence two.</s></p>' +
     '</speak>';
   app.ask(textToSpeech);
+      break;
   }
   return res.json({
     speech: speech,
