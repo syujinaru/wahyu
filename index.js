@@ -34,8 +34,9 @@ restService.post("/audio", function(req, res) {
     //Speech Synthesis Markup Language 
     case "qolam":
       speech =
-          '<speak> Assalamualaikum! Selamat datang di Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Kami siap menemani Anda untuk belajar, membaca dan mendengarkan Al-Qur’an. Apa yang ingin Anda baca dan dengarkan? [Murottal Al-Quran] [Murottal dan Terjemahan] [Do’a-do’a] [Ayat-Ayat Tematik] [Tafsir Al-Quran]</speak>';
-           app.ask({ speech: '[Murottal Al-Quran]' });
+          '<speak> Assalamualaikum! Selamat datang di Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Kami siap menemani Anda untuk belajar, membaca dan mendengarkan Al-Qur’an. Apa yang ingin Anda baca dan dengarkan? [Murottal Al-Quran] [Murottal dan Terjemahan] [Do’a-do’a] [Ayat-Ayat Tematik] [Tafsir Al-Quran]</speak>'
+          const textToSpeech = '<speak>[Murottal Al-Quran] </speak>';
+          app.ask(textToSpeech);
       break;
     case "Murottal Al-Quran":
       speech =
