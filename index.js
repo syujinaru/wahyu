@@ -54,12 +54,6 @@ restService.post("/audio", function(req, res) {
        actionMap.set(app.StandardIntents.CANCEL, sayBye);
        app.handleRequest(actionMap);
 	  break;
-    //Bad Input
-    case "Lagu Raisha":
-      speech = 
-	     '<speak>Sepertinya bukan itu yang kami maksud</speak>';
-     app.ask({ speech: 'Howdy! I can tell you fun facts about ' + 'almost any number, like 42. What do you have in mind?', displayText: 'Howdy! I can tell you fun facts about almost any ' + 'number. What do you have in mind?' });
-      break;
     case "Tidak mau2":
       speech =
         '<speak>Apakah Anda suka surah Yasin?</speak>';
