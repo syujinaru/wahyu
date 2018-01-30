@@ -48,18 +48,8 @@ restService.post("/audio", function(req, res) {
        '<speak>Selamat mendengarkan qori pilihan Anda, Untuk pilihan lebih lengkap silakan download Aplikasi Al-Qolam!<a href='https://play.google.com/store/apps/details?id=com.exceptionaire.alqolam'> <img src="http://alqolam.com/wp-content/uploads/2015/04/alqolamlogo.png">not connected image</img></a><break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda mau mendengarkan surah favorit Anda yang lain?[Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah] [Tidak mau]</speak>';
       break;
      case "Ok":
-           const textToSpeech = '<speak>' +
-    'Here are <say-as interpret-as="characters">SSML</say-as> samples. ' +
-    'I can pause <break time="3" />. ' +
-    'I can play a sound <audio src="https://www.example.com/MY_WAVE_FILE.wav">your wave file</audio>. ' +
-    'I can speak in cardinals. Your position is <say-as interpret-as="cardinal">10</say-as> in line. ' +
-    'Or I can speak in ordinals. You are <say-as interpret-as="ordinal">10</say-as> in line. ' +
-    'Or I can even speak in digits. Your position in line is <say-as interpret-as="digits">10</say-as>. ' +
-    'I can also substitute phrases, like the <sub alias="World Wide Web Consortium">W3C</sub>. ' +
-    'Finally, I can speak a paragraph with two sentences. ' +
-    '<p><s>This is sentence one.</s><s>This is sentence two.</s></p>' +
-    '</speak>';
-  app.ask(textToSpeech);
+           const textToSpeech = '<speak>Here are</speak>';
+     app.ask(textToSpeech);
       break;
   }
   return res.json({
