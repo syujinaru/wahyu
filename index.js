@@ -28,7 +28,6 @@ restService.post("/echo", function(req, res) {
 });
 
 restService.post("/audio", function(req, res) {
-  const app = new ActionsSdkApp({request, response});
   var speech = "";
   switch (req.body.result.parameters.AudioSample.toLowerCase()) {
     //Speech Synthesis Markup Language 
@@ -36,7 +35,7 @@ restService.post("/audio", function(req, res) {
       speech =
           '<speak> Assalamualaikum! Selamat datang di Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Kami siap menemani Anda untuk belajar, membaca dan mendengarkan Al-Qur’an. Apa yang ingin Anda baca dan dengarkan? [Murottal Al-Quran] [Murottal dan Terjemahan] [Do’a-do’a] [Ayat-Ayat Tematik] [Tafsir Al-Quran]</speak>'
           const textToSpeech = '<speak>[Murottal Al-Quran] </speak>';
-          app.ask(textToSpeech);
+          restService.ask(textToSpeech);
       break;
     case "Murottal Al-Quran":
       speech =
