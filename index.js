@@ -49,9 +49,7 @@ restService.post("/audio", function(req, res, app) {
   switch (req.body.result.parameters.AudioSample.toLowerCase()) {
     //Speech Synthesis Markup Language 
     case "qolam":
-      speech =
-          '<speak> Assalamualaikum! Selamat datang di Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Kami siap menemani Anda untuk belajar, membaca dan mendengarkan Al-Qur’an. Apa yang ingin Anda baca dan dengarkan? [Murottal Al-Quran] [Murottal dan Terjemahan] [Do’a-do’a] [Ayat-Ayat Tematik] [Tafsir Al-Quran]</speak>';
-      app.ask('sorry could not find, your search should be like one unit of egg or two liters of milk, etc');
+       app.ask('sorry could not find, your search should be like one unit of egg or two liters of milk, etc');
       break;
     case "Murottal Al-Quran":
       speech =
