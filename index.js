@@ -64,14 +64,6 @@ restService.post("/audio", function(req, res) {
       speech =
         '<speak>Apakah Anda suka surah Yasin?</speak>';
       break;
-    case "Ya":
-      speech =
-         '<speak> Baik. Selamat mendengarkan surah Yasin dari Qori Mishary Ibnu Rashid Al Afasy!<break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda mau mendengarkan surah favorit Anda yang lain? [Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah] [Tidak mau] </speak>';
-      break;
-    case "Tidak Mau3":
-      speech =
-        '<speak>Baiklah. Terima kasih. Sampai ketemu lagi. Untuk lebih lengkap silakan download Aplikasi Al-Qolam! <a href='https://play.google.com/store/apps/details?id=com.exceptionaire.alqolam'> <img src="http://alqolam.com/wp-content/uploads/2015/04/alqolamlogo.png">not connected image</img></a></speak>';
-      break;
     case "bleep":
       speech =
         '<speak>I do not want to say <say-as interpret-as="bleep">F&%$#</say-as> word</speak>';
