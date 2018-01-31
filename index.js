@@ -1,153 +1,64 @@
-"use strict";
+'use strict';
 
-const express = require("express");
-const bodyParser = require("body-parser");
+process.env.DEBUG = 'actions-on-google:*';
+const App = require('actions-on-google').DialogflowApp;
+const functions = require('firebase-functions');
 
-const restService = express();
+const PLAY_MUROTTAL_ACTION = 'play_murottal';
+const PLAY_MUROTTAL_SURAH_ACTION = 'play_murottal_surah';
 
-restService.use(
-  bodyParser.urlencoded({
-    extended: true
-  })
-);
+exports.alqolamWebhook = functions.https.onRequest((request, response) => {
+  const app = new App({request, response});
+  console.log('Request headers: ' + JSON.stringify(request.headers));
+  console.log('Request body: ' + JSON.stringify(request.body));
 
-restService.use(bodyParser.json());
-
-restService.post("/echo", function(req, res) {
-  var speech =
-    req.body.result &&
-    req.body.result.parameters &&
-    req.body.result.parameters.echoText
-      ? req.body.result.parameters.echoText
-      : "Seems like some problem. Speak again.";
-  return res.json({
-    speech: speech,
-    displayText: speech,
-    source: "webhook-echo-sample"
-  });
-});
-
-restService.post("/audio", function(req, res) {
-  var speech = "";
-  switch (req.body.result.parameters.AudioSample.toLowerCase()) {
-    //Speech Synthesis Markup Language 
-    case "qolam":
-      speech =
-          '<speak> Assalamualaikum! Selamat datang di Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Kami siap menemani Anda untuk belajar, membaca dan mendengarkan Al-Qur’an. Apa yang ingin Anda baca dan dengarkan? [Murottal Al-Quran] [Murottal dan Terjemahan] [Do’a-do’a] [Ayat-Ayat Tematik] [Tafsir Al-Quran]</speak>';
-     break;
-    case "Murottal":
-      speech =
-        '<speak>Baik. Surah apa yang ingin Anda baca dan dengarkan?, [Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah].</speak>';
-      break;
-    case "Surah Yasin":
-      speech =
-          '<speak> Terima kasih. Selamat mendengarkan surah Yasin dari Qori Mishary Ibnu Rashid Al Afasy. <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda ingin mendengarkan Al-Qur’an dengan qori lain? [Mishari Ibnu Rashid Al Afasy] [Abdurrahman As Sudays] [Sa’ad Al Ghomidi] [ As Suraim] [Tidak mau] </speak>';
-     break;
-    case "Abdurrahman As Sudays":
-      speech =
-       '<speak>Selamat mendengarkan qori pilihan Anda, Untuk pilihan lebih lengkap silakan download Aplikasi Al-Qolam! <img src="http://alqolam.com/wp-content/uploads/2015/04/alqolamlogo.png">not connected image</img><break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda mau mendengarkan surah favorit Anda yang lain?[Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah] [Tidak mau]</speak>';
-      break;
-    //Bad Input
-    case "Lagu Raisha":
-      speech = 
-	     '<speak>Sepertinya bukan itu yang kami maksud</speak>';
-    break;
-    case "Tidak Good":
-      speech =
-        '<speak>Apakah Anda suka surah Yasin?</speak>';
-      break;
-    case "Ya":
-      speech =
-         '<speak> Baik. Selamat mendengarkan surah Yasin dari Qori Mishary Ibnu Rashid Al Afasy!<break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda mau mendengarkan surah favorit Anda yang lain? [Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah] [Tidak mau] </speak>';
-      break;
-    case "Tidak Ok":
-      speech =
-        '<speak>Baiklah. Terima kasih. Sampai ketemu lagi. Untuk lebih lengkap silakan download Aplikasi Al-Qolam! <img src="http://alqolam.com/wp-content/uploads/2015/04/alqolamlogo.png">not connected image</img></a></speak>';
-      break;
-  
+  function playMurottal (app) {
+    app.ask(app.buildRichResponse()
+      .addSimpleResponse('Baik. Surah apa yang ingin Anda baca dan dengarkan?')
+      .addSuggestions([
+        'Surah Alfatihah', 
+        'Surah Yasin', 
+        'Surah Al Waqiah', 
+        'Surah Al-Mulk', 
+        'Surah Ar-Rahman', 
+        'Al-Maidah'])
+    );
   }
-  return res.json({
-    speech: speech,
-    displayText: speech,
-    source: "webhook-echo-sample"
-  });
-});
 
-restService.post("/video", function(req, res) {
-  return res.json({
-    speech:
-      '<speak>  <audio src="https://www.youtube.com/watch?v=VX7SSnvpj-8">did not get your MP3 audio file</audio></speak>',
-    displayText:
-      '<speak>  <audio src="https://www.youtube.com/watch?v=VX7SSnvpj-8">did not get your MP3 audio file</audio></speak>',
-    source: "webhook-echo-sample"
-  });
-});
+  function playMurottalSurah (app) {
+    app.ask(app.buildRichResponse()
+      .addSimpleResponse('<speak>' +
+      'Terima kasih. Selamat mendengarkan surah Yasin dari Qori Mishary Ibnu Rashid Al Afas. ' +
+      '<audio src="https://www.example.com/MY_WAVE_FILE.wav">your wave file</audio>. ' +
+      '</speak>')
+      .addSimpleResponse('Apakah Anda ingin mendengarkan Al-Qur’an dengan qori lain?')
+      .addSuggestions([
+        'Mishari Ibnu Rashid Al Afasy', 
+        'Abdurrahman As Sudays',
+        'Sa’ad Al Ghomidi',
+        'As Suraim',
+        'Tidak mau'])
+    );
+  }
 
-restService.post("/slack-test", function(req, res) {
-  var slack_message = {
-    text: "Details of JIRA board for Browse and Commerce",
-    attachments: [
-      {
-        title: "JIRA Board",
-        title_link: "http://www.google.com",
-        color: "#36a64f",
+  function playMurottalQori (app) {
+    app.ask(app.buildRichResponse()
+      .addSimpleResponse('<speak>' +
+      'Terima kasih. Selamat mendengarkan surah Yasin dari Qori Mishary Ibnu Rashid Al Afas. ' +
+      '<audio src="https://www.example.com/MY_WAVE_FILE.wav">your wave file</audio>. ' +
+      '</speak>')
+      .addSimpleResponse('Apakah Anda ingin mendengarkan Al-Qur’an dengan qori lain?')
+      .addSuggestions([
+        'Mishari Ibnu Rashid Al Afasy', 
+        'Abdurrahman As Sudays',
+        'Sa’ad Al Ghomidi',
+        'As Suraim',
+        'Tidak mau'])
+    );
+  }
 
-        fields: [
-          {
-            title: "Epic Count",
-            value: "50",
-            short: "false"
-          },
-          {
-            title: "Story Count",
-            value: "40",
-            short: "false"
-          }
-        ],
-
-        thumb_url:
-          "https://stiltsoft.com/blog/wp-content/uploads/2016/01/5.jira_.png"
-      },
-      {
-        title: "Story status count",
-        title_link: "http://www.google.com",
-        color: "#f49e42",
-
-        fields: [
-          {
-            title: "Not started",
-            value: "50",
-            short: "false"
-          },
-          {
-            title: "Development",
-            value: "40",
-            short: "false"
-          },
-          {
-            title: "Development",
-            value: "40",
-            short: "false"
-          },
-          {
-            title: "Development",
-            value: "40",
-            short: "false"
-          }
-        ]
-      }
-    ]
-  };
-  return res.json({
-    speech: "speech",
-    displayText: "speech",
-    source: "webhook-echo-sample",
-    data: {
-      slack: slack_message
-    }
-  });
-});
-
-restService.listen(process.env.PORT || 8000, function() {
-  console.log("Server up and listening");
+  let actionMap = new Map();
+  actionMap.set(PLAY_MUROTTAL_ACTION, playMurottal);
+  actionMap.set(PLAY_MUROTTAL_SURAH_ACTION, playMurottalSurah);
+  app.handleRequest(actionMap);
 });
