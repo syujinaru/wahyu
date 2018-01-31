@@ -13,56 +13,98 @@ restService.use(
 
 restService.use(bodyParser.json());
 
-restService.post("/echo", function list () {
-  const app = new ActionsSdkApp({request, response});
-  app.askWithList('Alright! Here are a few things you can learn. Which sounds interesting?',
-    // Build a list
-    app.buildList('Things to learn about')
-      // Add the first item to the list
-      .addItems(app.buildOptionItem('MATH_AND_PRIME',
-        ['math', 'math and prime', 'prime numbers', 'prime'])
-        .setTitle('Math & prime numbers')
-        .setDescription('42 is an abundant number because the sum of its ' +
-        'proper divisors 54 is greater…')
-        .setImage('http://example.com/math_and_prime.jpg', 'Math & prime numbers'))
-      // Add the second item to the list
-      .addItems(app.buildOptionItem('EGYPT',
-        ['religion', 'egpyt', 'ancient egyptian'])
-        .setTitle('Ancient Egyptian religion')
-        .setDescription('42 gods who ruled on the fate of the dead in the ' +
-        'afterworld. Throughout the under…')
-        .setImage('http://example.com/egypt', 'Egypt')
-      )
-      // Add third item to the list
-      .addItems(app.buildOptionItem('RECIPES',
-        ['recipes', 'recipe', '42 recipes'])
-        .setTitle('42 recipes with 42 ingredients')
-        .setDescription('Here\'s a beautifully simple recipe that\'s full ' +
-        'of flavor! All you need is some ginger and…')
-        .setImage('http://example.com/recipe', 'Recipe')
-      )
-  );
+restService.post("/echo", function(req, res) {
+  var speech =
+    req.body.result &&
+    req.body.result.parameters &&
+    req.body.result.parameters.echoText
+      ? req.body.result.parameters.echoText
+      : "Seems like some problem. Speak again.";
+  return res.json({
+    speech: speech,
+    displayText: speech,
+    source: "webhook-echo-sample"
+  });
 });
 
-restService.post("/audio", function(req, res, app) {
+restService.post("/audio", function(req, res) {
   var speech = "";
   switch (req.body.result.parameters.AudioSample.toLowerCase()) {
     //Speech Synthesis Markup Language 
-    case "qolam":
-       app.ask('sorry could not find, your search should be like one unit of egg or two liters of milk, etc');
-      break;
+    case "Talk to Al-Qolam!":
+      speech =
+          '<speak> Assalamualaikum! Selamat datang di Al-Qolam! <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Kami siap menemani Anda untuk belajar, membaca dan mendengarkan Al-Qur’an. Apa yang ingin Anda baca dan dengarkan? [Murottal Al-Quran] [Murottal dan Terjemahan] [Do’a-do’a] [Ayat-Ayat Tematik] [Tafsir Al-Quran]</speak>';
+     break;
     case "Murottal Al-Quran":
       speech =
         '<speak>Baik. Surah apa yang ingin Anda baca dan dengarkan?, [Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah].</speak>';
       break;
-    case "yasin":
+    case "Surah Yasin":
       speech =
           '<speak> Terima kasih. Selamat mendengarkan surah Yasin dari Qori Mishary Ibnu Rashid Al Afasy. <break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda ingin mendengarkan Al-Qur’an dengan qori lain? [Mishari Ibnu Rashid Al Afasy] [Abdurrahman As Sudays] [Sa’ad Al Ghomidi] [ As Suraim] [Tidak mau] </speak>';
      break;
-    case "Sudays":
+    case "Abdurrahman As Sudays":
       speech =
-       '<speak>Selamat mendengarkan qori pilihan Anda, Untuk pilihan lebih lengkap silakan download Aplikasi Al-Qolam!<img src="http://alqolam.com/wp-content/uploads/2015/04/alqolamlogo.png">not connected image</img><break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda mau mendengarkan surah favorit Anda yang lain?[Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah] [Tidak mau]</speak>';
-     break;
+       '<speak>Selamat mendengarkan qori pilihan Anda, Untuk pilihan lebih lengkap silakan download Aplikasi Al-Qolam!<a href='https://play.google.com/store/apps/details?id=com.exceptionaire.alqolam'> <img src="http://alqolam.com/wp-content/uploads/2015/04/alqolamlogo.png">not connected image</img></a><break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda mau mendengarkan surah favorit Anda yang lain?[Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah] [Tidak mau]</speak>';
+      break;
+    //Bad Input
+    case "Lagu Raisha":
+      speech = 
+	     '<speak>Sepertinya bukan itu yang kami maksud</speak>';
+    break;
+    case "Tidak mau2":
+      speech =
+        '<speak>Apakah Anda suka surah Yasin?</speak>';
+      break;
+    case "Ya":
+      speech =
+         '<speak> Baik. Selamat mendengarkan surah Yasin dari Qori Mishary Ibnu Rashid Al Afasy!<break time="3s"/> <audio src="https://klinikkita.net/001_Al_Faatihah.ogg">tidak bisa mengkoneksikan audio</audio> Apakah Anda mau mendengarkan surah favorit Anda yang lain? [Surah Alfatihah] [Surah Yasin] [Surah Al Waqiah] [Surah Al-Mulk] [Surah Ar-Rahman] [Al-Maidah] [Tidak mau] </speak>';
+      break;
+    case "Tidak Mau3":
+      speech =
+        '<speak>Baiklah. Terima kasih. Sampai ketemu lagi. Untuk lebih lengkap silakan download Aplikasi Al-Qolam! <a href='https://play.google.com/store/apps/details?id=com.exceptionaire.alqolam'> <img src="http://alqolam.com/wp-content/uploads/2015/04/alqolamlogo.png">not connected image</img></a></speak>';
+      break;
+    case "bleep":
+      speech =
+        '<speak>I do not want to say <say-as interpret-as="bleep">F&%$#</say-as> word</speak>';
+      break;
+    case "unit":
+      speech =
+        '<speak>This road is <say-as interpret-as="unit">50 foot</say-as> wide</speak>';
+      break;
+    case "verbatim":
+      speech =
+        '<speak>You spell HELLO as <say-as interpret-as="verbatim">hello</say-as></speak>';
+      break;
+    case "date one":
+      speech =
+        '<speak>Today is <say-as interpret-as="date" format="yyyymmdd" detail="1">2017-12-16</say-as></speak>';
+      break;
+    case "date two":
+      speech =
+        '<speak>Today is <say-as interpret-as="date" format="dm" detail="1">16-12</say-as></speak>';
+      break;
+    case "date three":
+      speech =
+        '<speak>Today is <say-as interpret-as="date" format="dmy" detail="1">16-12-2017</say-as></speak>';
+      break;
+    case "time":
+      speech =
+        '<speak>It is <say-as interpret-as="time" format="hms12">2:30pm</say-as> now</speak>';
+      break;
+    case "telephone one":
+      speech =
+        '<speak><say-as interpret-as="telephone" format="91">09012345678</say-as> </speak>';
+      break;
+    case "telephone two":
+      speech =
+        '<speak><say-as interpret-as="telephone" format="1">(781) 771-7777</say-as> </speak>';
+      break;
+    // https://www.w3.org/TR/2005/NOTE-ssml-sayas-20050526/#S3.3
+    case "alternate":
+      speech =
+        '<speak>IPL stands for <sub alias="indian premier league">IPL</sub></speak>';
+      break;
   }
   return res.json({
     speech: speech,
